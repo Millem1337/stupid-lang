@@ -1,4 +1,4 @@
-var testVar = "123";
+var testVar;
 clog(testVar);
 cin(testVar);
 clog(testVar);
