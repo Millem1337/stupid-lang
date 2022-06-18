@@ -1,0 +1,4 @@
+var popa = "123";
+clog(popa);
+cin(popa);
+clog(popa);
