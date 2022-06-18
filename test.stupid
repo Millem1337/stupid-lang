@@ -1,4 +1,4 @@
-var popa = "123";
-clog(popa);
-cin(popa);
-clog(popa);
+var testVar = "123";
+clog(testVar);
+cin(testVar);
+clog(testVar);
