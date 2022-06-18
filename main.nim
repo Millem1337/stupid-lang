@@ -15,9 +15,9 @@ proc getFile(fileName: string): string =
     var file: File
 
     if file.open(fileName) == true:
-        log "++++ File can be compile"
+        log "++++ File can be interpreted"
     else:
-        log "---- File cannot be compiled"
+        log "---- File cannot be interpreted"
         return
     log "//// Splitting lines"
     var text: string
@@ -55,7 +55,6 @@ proc compile(code: string): seq =
                 else:
                     log "---- Variable not found in line " & $(i+1)
                     return
-            #let cin = readLine(stdin)
         if line.startsWith("var"):
             if line.split(' ').len < 4:
                 log "---- Syntax error in line " & $(i+1) & "\n---- The variable should be declared like this (example): var a = \"a\";"
@@ -63,6 +62,18 @@ proc compile(code: string): seq =
             let namevar = line.split(' ')[1]
             let variable = line.split(' ')[3]
             variables.add namevar, variable
+        if line.startsWith("//"):
+            continue
+        if line.startsWith("remVar"):
+            if line.split("(")[1].len < 2:
+                log "---- Syntax error in line " & $(i+1)
+                return
+            else:
+                if variables.contains(line.split("(")[1][0 .. line.split("(")[1].len-2]):
+                    variables.del(line.split("(")[1][0 .. line.split("(")[1].len-2])
+                else:
+                    log "---- Variable not found in line " & $(i+1)
+                    return
     log "++++ Compiled"
 
 clearLog()

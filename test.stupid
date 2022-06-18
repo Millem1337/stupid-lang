@@ -2,3 +2,4 @@ var testVar = "123";
 clog(testVar);
 cin(testVar);
 clog(testVar);
+remVar(testVar);
