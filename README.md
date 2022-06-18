@@ -5,3 +5,5 @@ Next, you must download the `main.nim` file and open the console. Next, you must
 `nim c .\main.nim`
 
 After that you can open the compiled file.
+
+Docs: https://millem1337.github.io/stupid-docs.html
