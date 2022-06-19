@@ -56,15 +56,29 @@ proc compile(code: string): seq =
                     log "---- Variable not found in line " & $(i+1)
                     return
         if line.startsWith("var"):
-            if line.split(' ').len < 2:
+            if line.split(' ').len < 1:
                 log "---- Syntax error in line " & $(i+1) & "\n---- The variable should be declared like this (example): var a = \"a\";"
                 return
-            let namevar = line.split(' ')[1]
-            if line.split(' ').len == 2:
+            if line.contains('='):
+                let spaces = line.split(' ')[1 .. line.split(' ').len-1]
+                var str: string
+                var stopfor: bool = false
+                for i,space in spaces:
+                    if stopfor == true:
+                        continue
+                    if space.contains('\"'):
+                        for s in spaces[i .. spaces.len-1]:
+                            str = str & s & " "
+                        stopfor = true
+                        continue
+                    str = str & space.replace(" ", "")
+                let namevar = str.split('=')[0]
+                let variable = str.split('=')[1]
+                variables.add namevar, variable
+            else:
+                let namevar = line.split(' ')[1]
                 variables.add namevar, "None"
                 continue
-            let variable = line.split(' ')[3]
-            variables.add namevar, variable
         if line.startsWith("//"):
             continue
         if line.startsWith("remVar"):
