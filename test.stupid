@@ -1,5 +1,9 @@
-var testVar= "stupid test var";
-clog(testVar);
-cin(testVar);
-clog(testVar);
-remVar(testVar);
+var name;
+cin(name);
+if(name == "Mike");
+    clog("Hello developer!");
+end;
+if(name != "Mike");
+    clog("Hello user!");
+end;
+remVar(name);
